@@ -8,12 +8,12 @@
     <!-- 상세 페이지 스타일 -->
     <style>
         /* 기본 박스 크기 설정 */
-        * {        * {
+        * {
             box-sizing: border-box;
         }
 
         /* 페이지 기본 스타일 */
-        body {        body {
+        body {
             margin: 0;
             background: #fff;
             color: #222;
@@ -21,13 +21,13 @@
         }
 
         /* 상세 페이지 전체 너비와 여백 */
-        .detail-page {        .detail-page {
+        .detail-page {
             width: min(1100px, 90%);
             margin: 55px auto;
         }
 
         /* 상단 제목 영역 */
-        .top-bar {        .top-bar {
+        .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -41,7 +41,7 @@
         }
 
         /* 목록 페이지로 돌아가는 링크 */
-        .back-link {        .back-link {
+        .back-link {
             color: #555;
             text-decoration: none;
             letter-spacing: 1px;
@@ -53,7 +53,7 @@
         }
 
         /* 초상화와 정보의 2열 레이아웃 */
-        .profile-layout {        .profile-layout {
+        .profile-layout {
             display: grid;
             grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
             align-items: start;
@@ -72,7 +72,7 @@
         }
 
         /* 초상화 테두리 영역 */
-        .portrait-frame {        .portrait-frame {
+        .portrait-frame {
             display: flex;
             justify-content: center;
             align-items: flex-start;
@@ -104,7 +104,7 @@
         }
 
         /* 캐릭터 정보 영역 */
-        .info-area {        .info-area {
+        .info-area {
             padding-top: 35px;
             min-width: 0;
         }
@@ -117,7 +117,7 @@
         }
 
         /* 캐릭터 이름 */
-        .character-name {        .character-name {
+        .character-name {
             margin: 0;
             padding-bottom: 18px;
             border-bottom: 1px solid #222;
@@ -127,7 +127,7 @@
         }
 
         /* 정보 항목별 간격 */
-        .info-section {        .info-section {
+        .info-section {
             margin-top: 28px;
         }
 
@@ -147,7 +147,7 @@
         }
 
         /* 페이지 하단 문구 */
-        .bottom-note {        .bottom-note {
+        .bottom-note {
             margin-top: 55px;
             padding-top: 12px;
             border-top: 1px solid #ccc;
@@ -157,7 +157,7 @@
         }
 
         /* 모바일 화면 대응 */
-        @media (max-width: 650px) {        @media (max-width: 650px) {
+        @media (max-width: 650px) {
             .detail-page {
                 margin: 28px auto;
             }
@@ -240,15 +240,15 @@
     </main>
 
     <!-- 캐릭터 데이터와 상세 페이지 표시 로직 -->
-    <script src="characters.js"></script>    <script src="characters.js"></script>
+    <script src="characters.js"></script>
     <script>
         // URL에서 표시할 캐릭터 ID 확인
-        const params = new URLSearchParams        const params = new URLSearchParams(window.location.search);
+        const params = new URLSearchParams(window.location.search);
         const characterId = params.get("id");
         const character = characters.find(item => item.id === characterId);
 
         // 화면 요소 연결
-        const nameElement = document.getElementById        const nameElement = document.getElementById("character-name");
+        const nameElement = document.getElementById("character-name");
         const ageElement = document.getElementById("character-age");
         const standElement = document.getElementById("character-stand");
         const introElement = document.getElementById("character-intro");
@@ -256,7 +256,7 @@
         const portraitFrame = document.getElementById("portrait-frame");
 
         // 캐릭터 정보가 존재하면 화면에 표시
-        if (character) {        if (character) {
+        if (character) {
             document.title = `${character.name} | DDONGGUR1 DREAM`;
             nameElement.textContent = character.name;
             ageElement.textContent = character.age || "나이 미등록";
@@ -265,7 +265,7 @@
             descriptionElement.textContent = character.description || "자세한 설명이 등록되지 않았습니다.";
 
             // 초상화 이미지 생성 및 로드 실패 처리
-            if (character.photo) {            if (character.photo) {
+            if (character.photo) {
                 const image = document.createElement("img");
                 image.src = character.photo;
                 image.alt = `${character.name}의 초상화`;
@@ -281,7 +281,7 @@
                 portraitFrame.replaceChildren(image);
             }
         // 해당 ID의 캐릭터가 없을 때 안내 표시
-        } else {        } else {
+        else {
             nameElement.textContent = "캐릭터를 찾을 수 없습니다.";
             ageElement.textContent = "";
             standElement.textContent = "";
