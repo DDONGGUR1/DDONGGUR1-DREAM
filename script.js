@@ -1,4 +1,3 @@
-
 const list = document.getElementById("character-list");
 const card = document.getElementById("profile-card");
 const portrait = document.getElementById("portrait");
@@ -13,7 +12,6 @@ function renderList() {
 
     characters.forEach((character, index) => {
         const button = document.createElement("button");
-
         button.type = "button";
         button.className = "character-button";
         button.textContent = `${index + 1}. ${character.name}`;
@@ -46,7 +44,7 @@ function renderProfile() {
     card.disabled = false;
     nameDisplay.textContent = character.name;
     ageDisplay.textContent = character.age || "나이 미등록";
-    introDisplay.textContent = character.intro || "소개가 등록되지 않았습니다.";
+    introDisplay.textContent = character.intro || "짧은 설명이 등록되지 않았습니다.";
 
     if (character.photo) {
         const image = document.createElement("img");
@@ -66,9 +64,7 @@ function renderProfile() {
 
 card.addEventListener("click", () => {
     if (!selectedId) return;
-
-    window.location.href =
-        `detail.html?id=${encodeURIComponent(selectedId)}`;
+    window.location.href = `detail.html?id=${encodeURIComponent(selectedId)}`;
 });
 
 renderProfile();
