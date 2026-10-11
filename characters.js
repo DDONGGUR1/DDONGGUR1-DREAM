@@ -8,7 +8,7 @@
 const characters = [
     // 첫 번째 캐릭터 정보
     {
-        id: "dream-1",
+        id: "Nellie-Rose",
         name: "Nellie Rose (넬리 로즈)",
         age: "31세",
         stand: "럭키 드로우\n타로 카드와 행운, 확률을 다룬다.",
@@ -18,7 +18,7 @@ const characters = [
     },
     // 두 번째 캐릭터 정보
     {
-        id: "dream-2",
+        id: "Lucia-Bellini",
         name: "Lucia Bellini (루치아 벨리니)",
         age: "20세",
         stand: "X",
