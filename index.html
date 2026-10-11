@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDONGGUR1 DREAM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 전체 페이지 레이아웃 -->
+    <main class="layout">
+
+        <!-- 왼쪽: 드림주 목록 -->
+        <!-- 왼쪽: 드림주 목록 -->
+        <aside class="character-list">
+            <p class="section-label">CHARACTER LIST</p>
+            <div id="character-list"></div>
+        </aside>
+
+        <!-- 오른쪽: 신분증형 프로필 카드 -->
+        <section class="profile-area">
+            <button id="profile-card" class="id-card" type="button">
+                <!-- 캐릭터 초상화 -->
+                <div class="portrait" id="portrait">
+                    <span>PORTRAIT</span>
+                </div>
+
+                <!-- 캐릭터 인적 사항 요약 -->
+                <div class="profile-summary">
+                    <p class="section-label">PERSONAL INFORMATION</p>
+                    <h1 id="profile-name">캐릭터 이름</h1>
+                    <p id="profile-age">나이</p>
+                    <p id="profile-intro">간단한 소개가 표시됩니다.</p>
+                    <span class="card-hint">CLICK TO VIEW PROFILE ↗</span>
+                </div>
+            </button>
+        </section>
+
+    </main>
+
+<!-- 캐릭터 데이터 및 화면 동작 스크립트 -->
+<script src="characters.js"></script><script src="characters.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
