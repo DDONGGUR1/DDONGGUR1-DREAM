@@ -53,20 +53,35 @@ function renderProfile() {
     ageDisplay.textContent = character.age || "나이 미등록";
     introDisplay.textContent = character.intro || "짧은 설명이 등록되지 않았습니다.";
 
-    // 캐릭터 사진 표시 및 로드 실패 처리
-    if (character.photo) {
-        const image = document.createElement("img");
-        image.src = character.photo;
-        image.alt = `${character.name}의 사진`;
 
-        image.addEventListener("error", () => {
-            portrait.replaceChildren();
-            portrait.textContent = "IMAGE NOT FOUND";
-        });
+            // 초상화 이미지 생성 및 로드 실패 처리
+            if (character.photo) {
+                const image = document.createElement("img");
+                image.src = character.photo;
+                image.alt = `${character.name}의 초상화`;
 
-        portrait.appendChild(image);
-    } else {
-        portrait.textContent = "PORTRAIT";
+                image.addEventListener("error", () => {
+                    portraitFrame.replaceChildren();
+
+                    const placeholder = document.createElement("div");
+                    placeholder.className = "portrait-placeholder";
+                    placeholder.textContent = "IMAGE NOT FOUND";
+
+                    portraitFrame.appendChild(placeholder);
+                });
+
+                portraitFrame.replaceChildren(image);
+            }
+        } else {
+            // 해당 ID의 캐릭터가 없을 때 안내 표시
+            nameElement.textContent = "캐릭터를 찾을 수 없습니다.";
+            ageElement.textContent = "";
+            standElement.textContent = "";
+            introElement.textContent = "";
+            descriptionElement.textContent =
+                "목록 페이지에서 캐릭터를 선택해 다시 들어와 주세요.";
+        }
+
     }
 }
 
