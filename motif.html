@@ -129,7 +129,6 @@
     margin-bottom: 42px;
 }
 
-/* 음악 제목과 가수 */
 .music-info {
     position: relative;
     z-index: 1;
@@ -137,8 +136,32 @@
     padding: 0;
     margin: 0 0 20px;
     text-align: center;
-    color: white;
     background: none;
+}
+
+.music-info h2 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    color: #292824;
+}
+
+.music-info .artist {
+    display: block;
+    margin-top: 4px;
+    color: #68655e;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+/* 다크모드 음악 제목 및 가수 이름 */
+body.dark-mode .music-info h2 {
+    color: #eee;
+}
+
+body.dark-mode .music-info .artist {
+    color: #bbb;
 }
 
 .music-info h2 {
@@ -148,13 +171,6 @@
     overflow-wrap: anywhere;
 }
 
-.music-info .artist {
-    display: block;
-    margin-top: 4px;
-    color: #bbb;
-    font-size: 14px;
-    font-weight: normal;
-}
 
 /* 유튜브 플레이어 */
 #music-player {
