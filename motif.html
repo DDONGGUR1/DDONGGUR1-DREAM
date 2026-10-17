@@ -118,7 +118,7 @@
     margin-bottom: 42px;
 }
 
-/* 앨범 커버가 카드 전체를 채우도록 설정 */
+/* 앨범 커버 배경 */
 #music-cover {
     position: absolute;
     inset: 0;
@@ -127,12 +127,12 @@
     object-fit: cover;
 }
 
-/* 제목과 설명 영역 */
+/* 음악 제목과 설명 */
 .music-info {
     position: relative;
     z-index: 1;
-    padding: 24px;
-    padding-top: 100px;
+    margin-top: auto;
+    padding: 100px 24px 24px;
     color: white;
     background: linear-gradient(
         transparent,
@@ -154,10 +154,11 @@
     overflow-wrap: anywhere;
 }
 
-/* 유튜브 플레이어 영역 */
+/* 유튜브 플레이어 */
 #music-player {
     position: relative;
     z-index: 2;
+    width: 100%;
     background: #111;
 }
 
