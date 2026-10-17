@@ -41,7 +41,26 @@ workImages: [
         stand: "X",
         intro: "브루노 부차라티 드림",
         description: "노란 머리에 푸른 눈동자를 지녔으며, 발랄한 미소를 띠고 있는 여자.\n부차라티가 매일 찾는 카페의 점원이다. 그에게 커피와 함께 항상 레몬 사탕을 건네준다.\n이 마을에 온 지 얼마 되지 않았기에 규칙이나 갱스터에 대해 잘 모른다. 때문에 부차라티를 그저 평범한 직장인이나 시민으로 알고있다. 그가 갱인 줄은 꿈에도 모른다.",
-        photo: "images/브루노부차라티.png"
+        photo: "images/브루노부차라티.png",
+            
+        motif: {
+        personImages: [
+    ],
+
+work: "AESTHETIC",
+workImages: [
+    "images/lemon.png",
+    "images/lemonade.png",
+    "images/light.png"
+],
+
+        music: "kiss me",
+        musicArtist: "Sixpence None The Richer",
+        musicVideoId: "CAC-onWPMB0",
+
+        other: "",
+        tags: []
+        }
     },
     {
         id: "dream-3",
