@@ -270,91 +270,102 @@
 
 <script src="./characters.js"></script>
 <script>
+    <script>
+    // URL에서 캐릭터 ID 가져오기
     const params = new URLSearchParams(location.search);
     const id = params.get("id");
-    const character = window.characters?.find(item => item.id === id);
-        const id = params.get("id");
-        const character = characters.find(item => item.id === id);
+    const character = window.characters.find(item => item.id === id);
 
-        function setText(elementId, value, fallback) {
-            document.getElementById(elementId).textContent =
-                value || fallback;
+    // 글자 표시
+    function setText(elementId, value, fallback) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.textContent = value || fallback;
+        }
+    }
+
+    // 이미지 표시
+    function setImage(elementId, src, alt) {
+        const img = document.getElementById(elementId);
+        if (!img) return;
+
+        if (!src) {
+            img.hidden = true;
+            return;
         }
 
-        function setImage(elementId, src, alt) {
-            const img = document.getElementById(elementId);
+        img.src = src;
+        img.alt = alt;
+        img.hidden = false;
 
-            if (!src) {
-                img.hidden = true;
-                return;
-            }
+        img.onerror = () => {
+            img.hidden = true;
+        };
+    }
 
-            img.src = src;
-            img.alt = alt;
-            img.hidden = false;
+    if (character) {
+        const motif = character.motif || {};
 
-            img.addEventListener("error", () => {
-                img.hidden = true;
-            }, { once: true });
+        // 캐릭터 기본 정보
+        document.title = `${character.name} MOTIF | DDONGGUR1 DREAM`;
+        setText("name", character.name, "이름 미등록");
+        setText("subname", character.name, "Character Motif Archive");
+
+        document.getElementById("back").href =
+            `detail.html?id=${encodeURIComponent(character.id)}`;
+
+        setImage("avatar", character.photo, "캐릭터 이미지");
+
+        // 인물 모티브
+        setImage("person-image", motif.personImage, "인물 모티브 이미지");
+
+        // 작품 모티브
+        setText("work-title", motif.work || "VISUAL INSPIRATION / 시각적 영감", "VISUAL INSPIRATION / 시각적 영감");
+        setText("work-description", motif.workDescription, "작품 모티브 설명이 등록되지 않았습니다.");
+        setImage("work-image", motif.workImage, "작품 모티브 이미지");
+
+        // 기타 모티브
+        setText("other-description", motif.other, "기타 모티브 정보가 등록되지 않았습니다.");
+
+        // 음악 제목과 가수
+        const musicTitle = [motif.music, motif.musicArtist]
+            .filter(Boolean)
+            .join(" — ");
+
+        setText("music-title", musicTitle || "MUSIC ♫", "MUSIC ♫");
+        setText("music-description", motif.musicDescription, "대표 음악이 등록되지 않았습니다.");
+
+        // 앨범 커버
+        setImage("music-cover", motif.musicCover, "앨범 커버");
+
+        // 유튜브 플레이어
+        const musicPlayer = document.getElementById("music-player");
+        musicPlayer.replaceChildren();
+
+        if (motif.musicVideoId) {
+            const iframe = document.createElement("iframe");
+
+            iframe.src =
+                `https://www.youtube-nocookie.com/embed/${encodeURIComponent(motif.musicVideoId)}?autoplay=1&mute=1&playsinline=1`;
+
+            iframe.title = `${character.name}의 모티브 음악`;
+            iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+            iframe.allowFullscreen = true;
+
+            musicPlayer.appendChild(iframe);
         }
 
-        if (character) {
-            const motif = character.motif || {};
+        // 해시태그
+        const tags = Array.isArray(motif.tags) ? motif.tags : [];
+        document.getElementById("tags").textContent =
+            tags.map(tag => `#${String(tag).replace(/^#+/, "")}`).join("\n");
 
-            document.title = `${character.name} MOTIF | DDONGGUR1 DREAM`;
-            setText("name", character.name, "이름 미등록");
-            setText("subname", character.name, "Character Motif Archive");
-            document.getElementById("back").href =
-                `detail.html?id=${encodeURIComponent(character.id)}`;
-
-
-            setText("work-title", motif.work || "WORK / 작품", "WORK / 작품");
-            setText("work-description", motif.workDescription, "작품 모티브 설명이 등록되지 않았습니다.");
-            setImage("work-image", motif.workImage, "작품 모티브 이미지");
-
-            setText("other-description", motif.other, "기타 모티브 정보가 등록되지 않았습니다.");
-
-            const musicTitle = [motif.music, motif.musicArtist]
-                .filter(Boolean)
-                .join(" — ");
-
-            setText("music-title", musicTitle || "MUSIC ♫", "MUSIC ♫");
-            setText("music-description", motif.musicDescription, "대표 음악이 등록되지 않았습니다.");
-            // 앨범 커버 표시
-const musicCover = document.getElementById("music-cover");
-
-if (motif.musicCover) {
-    musicCover.src = motif.musicCover;
-    musicCover.hidden = false;
-} else {
-    musicCover.hidden = true;
-}
-
-// 유튜브 음악 플레이어 생성
-const musicPlayer = document.getElementById("music-player");
-musicPlayer.replaceChildren();
-
-if (motif.musicVideoId) {
-    const iframe = document.createElement("iframe");
-
-    iframe.src =
-        `https://www.youtube-nocookie.com/embed/${encodeURIComponent(motif.musicVideoId)}?autoplay=1&mute=1&playsinline=1`;
-
-    iframe.title = `${character.name}의 모티브 음악`;
-    iframe.allow = "autoplay; encrypted-media; picture-in-picture";
-    iframe.allowFullscreen = true;
-
-    musicPlayer.appendChild(iframe);
-}
-
-            const tags = Array.isArray(motif.tags) ? motif.tags : [];
-            document.getElementById("tags").textContent =
-                tags.map(tag => `#${String(tag).replace(/^#+/, "")}`).join("\n");
-        } else {
-            setText("name", "캐릭터를 찾을 수 없습니다.", "");
-            setText("subname", "목록에서 캐릭터를 선택해 주세요.", "");
-            document.getElementById("back").href = "index.html";
-        }
+    } else {
+        setText("name", "캐릭터를 찾을 수 없습니다.", "");
+        setText("subname", "목록에서 캐릭터를 선택해 주세요.", "");
+        document.getElementById("back").href = "index.html";
+    }
+</script>
     </script>
 
 <script src="theme.js"></script>
