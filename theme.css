@@ -142,3 +142,46 @@ body.dark-mode .theme-toggle button.active {
     background: #eee;
     color: #222;
 }
+
+
+/* 모드 선택 버튼을 감싸는 영역 */
+.theme-toggle {
+    position: fixed;
+    isolation: isolate;
+}
+
+/* 움직이는 원형 표시 */
+.theme-toggle::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    border-radius: 16px;
+    background: #222;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 0.3s ease;
+}
+
+/* DARK 선택 시 오른쪽으로 이동 */
+.theme-toggle:has([data-theme="dark"].active)::before {
+    transform: translateX(100%);
+}
+
+/* 다크모드에서는 원형 표시를 밝게 */
+body.dark-mode .theme-toggle::before {
+    background: #eee;
+}
+
+/* 선택된 버튼 배경은 투명하게 */
+.theme-toggle button.active {
+    background: transparent;
+    color: #fff;
+}
+
+body.dark-mode .theme-toggle button.active {
+    color: #222;
+}
+
