@@ -104,25 +104,76 @@
             background: #222;
         }
 
-        .music-card {
-            min-height: 260px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            border-radius: 24px;
-            background: linear-gradient(transparent, #25252b), #45454b;
-            margin-bottom: 42px;
-        }
+/* 음악 모티브 카드 */
+.music-card {
+    position: relative;
+    min-height: 360px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #222;
+    margin-bottom: 42px;
+}
 
-        .music-card h2 { font-size: 22px; }
+/* 앨범 커버가 카드 전체를 채우도록 설정 */
+#music-cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-        .music-card p {
-            color: #ddd;
-            line-height: 1.7;
-            white-space: pre-wrap;
-        }
+/* 제목과 설명 영역 */
+.music-info {
+    position: relative;
+    z-index: 1;
+    padding: 24px;
+    padding-top: 100px;
+    color: white;
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.88)
+    );
+}
 
+.music-info h2 {
+    margin: 0 0 12px;
+    font-size: 22px;
+    overflow-wrap: anywhere;
+}
+
+.music-info p {
+    margin: 0;
+    color: #eee;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* 유튜브 플레이어 영역 */
+#music-player {
+    position: relative;
+    z-index: 2;
+    background: #111;
+}
+
+#music-player iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+}
+
+/* 모바일 화면 */
+@media (max-width: 650px) {
+    .music-card {
+        min-height: 300px;
+    }
+}
         .tags {
             margin-top: 45px;
             text-align: right;
@@ -195,10 +246,20 @@
             </section>
 
             <section>
-                <article class="music-card">
-                    <h2 id="music-title">MUSIC ♫</h2>
-                    <p id="music-description">대표 음악이 등록되지 않았습니다.</p>
-                </article>
+<!-- 음악 모티브 카드 -->
+<article class="music-card" id="music-card">
+    <!-- 앨범 커버 -->
+    <img id="music-cover" alt="앨범 커버">
+
+    <!-- 음악 제목과 설명 -->
+    <div class="music-info">
+        <h2 id="music-title">MUSIC ♫</h2>
+        <p id="music-description">대표 음악이 등록되지 않았습니다.</p>
+    </div>
+
+    <!-- 유튜브 플레이어 -->
+    <div id="music-player"></div>
+</article>
 
                 <div class="tags" id="tags"></div>
             </section>
@@ -207,7 +268,6 @@
         <footer class="footer">MOTIF FILE · DDONGGUR1 DREAM</footer>
     </main>
 
-    <script src="characters.js"></script>
     <script>
         const params = new URLSearchParams(location.search);
         const id = params.get("id");
@@ -244,10 +304,6 @@
             document.getElementById("back").href =
                 `detail.html?id=${encodeURIComponent(character.id)}`;
 
-            setImage("avatar", character.photo, `${character.name} 이미지`);
-            setText("person-title", motif.person || "PERSON / 인물", "PERSON / 인물");
-            setText("person-description", motif.personDescription, "인물 모티브 설명이 등록되지 않았습니다.");
-            setImage("person-image", motif.personImage, "인물 모티브 이미지");
 
             setText("work-title", motif.work || "WORK / 작품", "WORK / 작품");
             setText("work-description", motif.workDescription, "작품 모티브 설명이 등록되지 않았습니다.");
@@ -261,6 +317,32 @@
 
             setText("music-title", musicTitle || "MUSIC ♫", "MUSIC ♫");
             setText("music-description", motif.musicDescription, "대표 음악이 등록되지 않았습니다.");
+            // 앨범 커버 표시
+const musicCover = document.getElementById("music-cover");
+
+if (motif.musicCover) {
+    musicCover.src = motif.musicCover;
+    musicCover.hidden = false;
+} else {
+    musicCover.hidden = true;
+}
+
+// 유튜브 음악 플레이어 생성
+const musicPlayer = document.getElementById("music-player");
+musicPlayer.replaceChildren();
+
+if (motif.musicVideoId) {
+    const iframe = document.createElement("iframe");
+
+    iframe.src =
+        `https://www.youtube-nocookie.com/embed/${encodeURIComponent(motif.musicVideoId)}?autoplay=1&mute=1&playsinline=1`;
+
+    iframe.title = `${character.name}의 모티브 음악`;
+    iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+    iframe.allowFullscreen = true;
+
+    musicPlayer.appendChild(iframe);
+}
 
             const tags = Array.isArray(motif.tags) ? motif.tags : [];
             document.getElementById("tags").textContent =
