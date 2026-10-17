@@ -13,6 +13,23 @@ const characters = [
         intro: "마운틴 팀 드림",
         description: "노란 머리에 푸른 눈동자를 지녔으며, 언제나 여유로운 미소를 띠고 있는 미인.\n사람을 죽였다는 혐의로 현상수배범이 되었다. 그 사실의 진위여부는 알지 못한다.\n항상 여유롭게 웃으며 마운틴 팀을 따돌리고 달아난다. 능글맞은 장난을 치는 건 덤.\n본인보다 어린 사람들은 '꼬맹이'라 부르기도 한다.",
         photo: "images/마운틴팀.png"
+            
+        motif: {
+            person: "",
+            personImage: "",
+            personDescription: "",
+
+            work: "",
+            workImage: "",
+            workDescription: "",
+
+            music: "",
+            musicArtist: "",
+            musicDescription: "",
+
+            other: "",
+            tags: []
+        }
     },
     {
         id: "dream-2",
