@@ -45,7 +45,6 @@ workImages: [
     "images/초콜릿.png",
     "images/강아지.png"
 ],
-workDescription: "캐릭터의 분위기와 색감, 이미지에 대한 기록",
 
         music: "恋はじめまして (사랑, 시작했습니다)",
         musicArtist: "岡田 有希子 (오카다 유키코)",
