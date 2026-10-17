@@ -337,3 +337,122 @@ dialog::backdrop {
         transition: none;
     }
 }
+
+/* ===== THEME MODE ===== */
+
+body {
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 9999;
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    background: #fff;
+    color: #222;
+    font: inherit;
+    font-size: 11px;
+}
+
+.theme-toggle button {
+    padding: 6px 9px;
+    border: 0;
+    border-radius: 16px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.theme-toggle button.active {
+    background: #222;
+    color: #fff;
+}
+
+/* 다크모드 */
+body.dark-mode {
+    background: #171717;
+    color: #eee;
+}
+
+.dark-mode .character-button {
+    background: #222;
+    color: #eee;
+    border-color: #777;
+}
+
+.dark-mode .character-button:hover {
+    background: #30302d;
+}
+
+.dark-mode .character-button.active,
+.dark-mode .character-button.active:hover {
+    background: #3a3934;
+    border-color: #aaa;
+}
+
+.dark-mode .section-label,
+.dark-mode #profile-age,
+.dark-mode #profile-intro,
+.dark-mode .card-hint {
+    color: #bbb;
+}
+
+.dark-mode .id-card {
+    background: #292929;
+    color: #eee;
+    border-color: #777;
+}
+
+.dark-mode .id-card::before {
+    background: #383838;
+    color: #ddd;
+    border-color: #666;
+}
+
+.dark-mode .profile-summary h1,
+.dark-mode .card-hint {
+    border-color: #666;
+}
+
+.dark-mode .portrait {
+    background: #333;
+    color: #bbb;
+    border-color: #777;
+}
+
+.dark-mode .add-button {
+    background: #222;
+    color: #ddd;
+    border-color: #777;
+}
+
+.dark-mode dialog {
+    background: #222;
+    color: #eee;
+    border-color: #777;
+}
+
+.dark-mode #add-form input,
+.dark-mode #add-form textarea {
+    background: #333;
+    color: #eee;
+    border-color: #666;
+}
+
+.dark-mode .theme-toggle {
+    background: #222;
+    color: #eee;
+    border-color: #777;
+}
+
+.dark-mode .theme-toggle button.active {
+    background: #eee;
+    color: #222;
+}
