@@ -15,20 +15,18 @@ const characters = [
         photo: "images/마운틴팀.png",
             
         motif: {
-            person: "",
-            personImage: "",
-            personDescription: "",
+        personImage: "images/person.png",
 
-            work: "",
-            workImage: "",
-            workDescription: "",
+        work: "AESTHETIC",
+        workImage: "images/aesthetic.png",
+        workDescription: "캐릭터의 분위기와 색감, 이미지에 대한 기록",
 
-            music: "",
-            musicArtist: "",
-            musicDescription: "",
+        music: "",
+        musicArtist: "",
+        musicDescription: "",
 
-            other: "",
-            tags: []
+        other: "",
+        tags: []
         }
     },
     {
