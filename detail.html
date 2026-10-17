@@ -170,6 +170,26 @@
                 margin-top: 22px;
             }
         }
+                .motif-link-area {
+            margin-top: 35px;
+            text-align: right;
+        }
+
+        .motif-link {
+            display: inline-block;
+            padding: 14px 20px;
+            border: 1px solid #222;
+            color: #222;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .motif-link:hover {
+            background: #222;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -213,6 +233,11 @@
             </section>
         </div>
 
+                <div class="motif-link-area" id="motif-link-area" hidden>
+            <a class="motif-link" id="motif-link" href="motif.html">
+                VIEW MOTIF →
+            </a>
+        </div>
         <footer class="bottom-note">CHARACTER FILE · DDONGGUR1 DREAM</footer>
     </main>
 
@@ -228,9 +253,13 @@
         const introElement = document.getElementById("character-intro");
         const descriptionElement = document.getElementById("character-description");
         const portraitFrame = document.getElementById("portrait-frame");
+        const motifLinkArea = document.getElementById("motif-link-area");
+        const motifLink = document.getElementById("motif-link");
 
         if (character) {
             document.title = `${character.name} | DDONGGUR1 DREAM`;
+            motifLinkArea.hidden = false;
+            motifLink.href = `motif.html?id=${encodeURIComponent(character.id)}`;
             nameElement.textContent = character.name;
             ageElement.textContent = character.age || "나이 미등록";
             standElement.textContent = character.stand || "스탠드 미등록";
