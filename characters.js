@@ -4,7 +4,7 @@
  * stand: 스탠드 이름, intro: 첫 화면에 표시되는 짧은 설명
  * description: 상세 페이지에 표시되는 자세한 설명
  */
-const characters = [
+window.characters = [
     {
         id: "dream-1",
         name: "Nellie Rose (넬리 로즈)",
