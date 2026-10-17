@@ -16,16 +16,14 @@ window.characters = [
             
         motif: {
         personImages: [
-        "images/아아이1.png",
-        "images/아이2.png",
-        "images/아이3.png"
+        "images/넬리.png",
+        "images/넬리2.png"
     ],
 
 work: "AESTHETIC",
 workImages: [
-    "images/비눗방울.png",
-    "images/초콜릿.png",
-    "images/강아지.png"
+    "images/카우걸.png",
+    "images/원티드.png"
 ],
 
         music: "bang bang",
