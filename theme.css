@@ -76,48 +76,60 @@ body.dark-mode .motif-link:hover {
     color: #222;
 }
 
+
 /* 모티브 페이지 라이트모드 */
+body:not(.dark-mode) {
+    background: #faf9f6;
+    color: #292824;
+}
+
 body:not(.dark-mode) .cover {
-    background: linear-gradient(transparent, #fff), #e5e5e5;
-    border-color: #ddd;
+    background: linear-gradient(transparent, #faf9f6), #e9e6df;
+    border-color: #dedbd4;
 }
 
 body:not(.dark-mode) .avatar {
-    background: #eee;
-    border-color: #bbb;
+    background: #e9e6df;
+    border-color: #d1cec6;
+}
+
+body:not(.dark-mode) .name {
+    color: #292824;
 }
 
 body:not(.dark-mode) .subname,
 body:not(.dark-mode) .back,
-body:not(.dark-mode) .item p,
-body:not(.dark-mode) .footer {
-    color: #666;
+body:not(.dark-mode) .item p {
+    color: #77746d;
 }
 
 body:not(.dark-mode) .back:hover {
-    color: #000;
+    color: #292824;
 }
 
 body:not(.dark-mode) .item img {
-    background: #eee;
+    background: #efede7;
 }
 
 body:not(.dark-mode) .music-card {
-    background: linear-gradient(transparent, #eee), #d8d8d8;
-    color: #222;
+    background: linear-gradient(160deg, #eeece5, #e3e0d7);
+    color: #292824;
+    border: 1px solid #dedbd4;
 }
 
 body:not(.dark-mode) .music-card p {
-    color: #444;
+    color: #68655e;
 }
 
 body:not(.dark-mode) .tags {
-    color: #65658d;
+    color: #77758f;
 }
 
 body:not(.dark-mode) .footer {
-    border-color: #ddd;
+    color: #89867f;
+    border-color: #dedbd4;
 }
+
 
 /* 다크모드 버튼 */
 body.dark-mode .theme-toggle {
