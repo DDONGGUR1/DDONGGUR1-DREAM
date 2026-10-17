@@ -12,7 +12,29 @@ window.characters = [
         stand: "BANG BANG\n발사된 총알의 속도를 늦추거나 빠르게 한다. 느린 탄환으로 상대를 방심시킨 뒤 순간적으로 가속하는 식.",
         intro: "마운틴 팀 드림",
         description: "노란 머리에 푸른 눈동자를 지녔으며, 언제나 여유로운 미소를 띠고 있는 미인.\n사람을 죽였다는 혐의로 현상수배범이 되었다. 그 사실의 진위여부는 알지 못한다.\n항상 여유롭게 웃으며 마운틴 팀을 따돌리고 달아난다. 능글맞은 장난을 치는 건 덤.\n본인보다 어린 사람들은 '꼬맹이'라 부르기도 한다.",
-        photo: "images/마운틴팀.png"
+        photo: "images/마운틴팀.png",
+            
+        motif: {
+        personImages: [
+        "images/아아이1.png",
+        "images/아이2.png",
+        "images/아이3.png"
+    ],
+
+work: "AESTHETIC",
+workImages: [
+    "images/비눗방울.png",
+    "images/초콜릿.png",
+    "images/강아지.png"
+],
+
+        music: "bang bang",
+        musicArtist: "Nancy Sinatra",
+        musicVideoId: "qgDrpWWxuto",
+
+        other: "",
+        tags: []
+        }
     },
     {
         id: "dream-2",
@@ -49,8 +71,6 @@ workImages: [
         music: "恋はじめまして (사랑, 시작했습니다)",
         musicArtist: "岡田 有希子 (오카다 유키코)",
         musicVideoId: "oFN03dRAbZE",
-        musicCover: "images/아이.png",
-        musicDescription: "곡에 대한 설명",
 
         other: "",
         tags: []
