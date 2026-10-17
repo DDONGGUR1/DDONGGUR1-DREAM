@@ -250,17 +250,18 @@ body.dark-mode .music-info .artist {
         <div class="content">
             <section>
                 <article class="item">
-                    <img id="person-image" alt="인물 모티브 이미지" hidden>
+                    <h2>VISUAL</h2>
+                    <img id="person-image" alt="비주얼 모티브 이미지" hidden>
                 </article>
 
                 <article class="item">
-                    <h2 id="work-title">VISUAL INSPIRATION / 시각적 영감</h2>
-                    <p id="work-description">작품 모티브 설명이 등록되지 않았습니다.</p>
-                    <img id="work-image" alt="작품 모티브 이미지" hidden>
+                    <h2>AESTHETIC</h2>
+                    <p id="work-description">분위기 모티브 설명이 등록되지 않았습니다.</p>
+                    <img id="work-image" alt="분위기 모티브 이미지" hidden>
                 </article>
 
                 <article class="item">
-                    <h2>OTHER / 기타</h2>
+                    <h2>OTHER</h2>
                     <p id="other-description">기타 모티브 정보가 등록되지 않았습니다.</p>
                 </article>
             </section>
@@ -350,14 +351,13 @@ if (personImages.length > 0) {
     personImageContainer.replaceWith(imageContainer);
 }
 
-        // 작품 모티브
-        document.getElementById("work-title").textContent =
-    motif.work || "VISUAL INSPIRATION / 시각적 영감";
-document.getElementById("work-title").hidden = false;
-        setText("work-description", motif.workDescription, "작품 모티브 설명이 등록되지 않았습니다.");
-const workImage = document.getElementById("work-image");
-setImage("work-image", motif.workImage, "작품 모티브 이미지");
-workImage.style.position = "relative";
+// AESTHETIC 설명 및 이미지
+setText(
+    "work-description",
+    motif.workDescription,
+    "No description registered."
+);
+setImage("work-image", motif.workImage, "AESTHETIC image");
 
         // 기타 모티브
         setText("other-description", motif.other, "기타 모티브 정보가 등록되지 않았습니다.");
