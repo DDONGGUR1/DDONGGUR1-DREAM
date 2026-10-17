@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
     <title>CHARACTER MOTIF | DDONGGUR1 DREAM</title>
+
     <style>
         * { box-sizing: border-box; }
 
@@ -23,8 +24,7 @@
 
         .cover {
             height: 260px;
-            background: linear-gradient(transparent, #080808),
-                        #252525;
+            background: linear-gradient(transparent, #080808), #252525;
             border-bottom: 1px solid #333;
         }
 
@@ -49,6 +49,7 @@
         .name {
             margin: 0 0 8px;
             font-size: clamp(28px, 5vw, 46px);
+            overflow-wrap: anywhere;
         }
 
         .subname {
@@ -88,6 +89,7 @@
             line-height: 1.7;
             font-size: 14px;
             white-space: pre-wrap;
+            overflow-wrap: anywhere;
         }
 
         .item img {
@@ -106,12 +108,17 @@
             flex-direction: column;
             justify-content: flex-end;
             border-radius: 24px;
-            background: linear-gradient(transparent, #25252b),
-                        #45454b;
+            background: linear-gradient(transparent, #25252b), #45454b;
             margin-bottom: 42px;
         }
 
         .music-card h2 { font-size: 22px; }
+
+        .music-card p {
+            color: #ddd;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
 
         .tags {
             margin-top: 45px;
@@ -119,6 +126,7 @@
             line-height: 2.5;
             color: #c9c9e8;
             font-style: italic;
+            overflow-wrap: anywhere;
         }
 
         .footer {
@@ -135,11 +143,16 @@
             .header { gap: 16px; }
             .avatar { width: 95px; height: 95px; }
             .subname { font-size: 14px; }
-            .content { grid-template-columns: 1fr; gap: 0; margin-top: 35px; }
+            .content {
+                grid-template-columns: 1fr;
+                gap: 0;
+                margin-top: 35px;
+            }
             .music-card { min-height: 220px; }
         }
     </style>
 </head>
+
 <body>
     <main class="motif-page">
         <div class="cover"></div>
@@ -157,34 +170,30 @@
         <div class="content">
             <section>
                 <article class="item">
-                    <h2>PERSON / 인물</h2>
-                    <p>모티브가 된 인물과 관련 설명</p>
-                    <img src="" alt="인물 모티브 이미지">
+                    <h2 id="person-title">PERSON / 인물</h2>
+                    <p id="person-description">인물 모티브 설명이 등록되지 않았습니다.</p>
+                    <img id="person-image" alt="인물 모티브 이미지" hidden>
                 </article>
 
                 <article class="item">
-                    <h2>WORK / 작품</h2>
-                    <p>참고한 작품과 관련 설명</p>
-                    <img src="" alt="작품 모티브 이미지">
+                    <h2 id="work-title">WORK / 작품</h2>
+                    <p id="work-description">작품 모티브 설명이 등록되지 않았습니다.</p>
+                    <img id="work-image" alt="작품 모티브 이미지" hidden>
                 </article>
 
                 <article class="item">
                     <h2>OTHER / 기타</h2>
-                    <p>그 외의 모티브와 설정</p>
+                    <p id="other-description">기타 모티브 정보가 등록되지 않았습니다.</p>
                 </article>
             </section>
 
             <section>
                 <article class="music-card">
-                    <h2>MUSIC ♫</h2>
-                    <p>캐릭터를 대표하는 음악</p>
+                    <h2 id="music-title">MUSIC ♫</h2>
+                    <p id="music-description">대표 음악이 등록되지 않았습니다.</p>
                 </article>
 
-                <div class="tags">
-                    #CHARACTER MOTIF<br>
-                    #INSPIRATION<br>
-                    #PERSONAL ARCHIVE
-                </div>
+                <div class="tags" id="tags"></div>
             </section>
         </div>
 
@@ -197,23 +206,62 @@
         const id = params.get("id");
         const character = characters.find(item => item.id === id);
 
+        function setText(elementId, value, fallback) {
+            document.getElementById(elementId).textContent =
+                value || fallback;
+        }
+
+        function setImage(elementId, src, alt) {
+            const img = document.getElementById(elementId);
+
+            if (!src) {
+                img.hidden = true;
+                return;
+            }
+
+            img.src = src;
+            img.alt = alt;
+            img.hidden = false;
+
+            img.addEventListener("error", () => {
+                img.hidden = true;
+            }, { once: true });
+        }
+
         if (character) {
+            const motif = character.motif || {};
+
             document.title = `${character.name} MOTIF | DDONGGUR1 DREAM`;
-            document.getElementById("name").textContent = character.name;
-            document.getElementById("subname").textContent = character.name;
+            setText("name", character.name, "이름 미등록");
+            setText("subname", character.name, "Character Motif Archive");
             document.getElementById("back").href =
                 `detail.html?id=${encodeURIComponent(character.id)}`;
 
-            const avatar = document.getElementById("avatar");
-            if (character.photo) {
-                avatar.src = character.photo;
-            } else {
-                avatar.style.display = "none";
-            }
+            setImage("avatar", character.photo, `${character.name} 이미지`);
+            setText("person-title", motif.person || "PERSON / 인물", "PERSON / 인물");
+            setText("person-description", motif.personDescription, "인물 모티브 설명이 등록되지 않았습니다.");
+            setImage("person-image", motif.personImage, "인물 모티브 이미지");
+
+            setText("work-title", motif.work || "WORK / 작품", "WORK / 작품");
+            setText("work-description", motif.workDescription, "작품 모티브 설명이 등록되지 않았습니다.");
+            setImage("work-image", motif.workImage, "작품 모티브 이미지");
+
+            setText("other-description", motif.other, "기타 모티브 정보가 등록되지 않았습니다.");
+
+            const musicTitle = [motif.music, motif.musicArtist]
+                .filter(Boolean)
+                .join(" — ");
+
+            setText("music-title", musicTitle || "MUSIC ♫", "MUSIC ♫");
+            setText("music-description", motif.musicDescription, "대표 음악이 등록되지 않았습니다.");
+
+            const tags = Array.isArray(motif.tags) ? motif.tags : [];
+            document.getElementById("tags").textContent =
+                tags.map(tag => `#${String(tag).replace(/^#+/, "")}`).join("\n");
         } else {
-            document.getElementById("name").textContent = "MOTIF ARCHIVE";
-            document.getElementById("subname").textContent =
-                "캐릭터를 찾을 수 없습니다.";
+            setText("name", "캐릭터를 찾을 수 없습니다.", "");
+            setText("subname", "목록에서 캐릭터를 선택해 주세요.", "");
+            document.getElementById("back").href = "index.html";
         }
     </script>
 </body>
