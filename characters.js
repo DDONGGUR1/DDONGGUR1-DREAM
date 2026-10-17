@@ -33,7 +33,11 @@ window.characters = [
         photo: "images/히가시카타죠슷게.png",
             
         motif: {
-        personImage: "images/person.png",
+        personImages: [
+        "images/아아이1.png",
+        "images/아이2.png",
+        "images/아이3.png"
+    ],
 
         work: "AESTHETIC",
         workImage: "images/aesthetic.png",
