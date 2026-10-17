@@ -311,8 +311,28 @@ const character = window.characters.find(item => item.id === id);
 
         setImage("avatar", character.photo, "캐릭터 이미지");
 
-        // 인물 모티브
-        setImage("person-image", motif.personImage, "인물 모티브 이미지");
+// 인물 모티브 사진 3장
+const personImageContainer = document.getElementById("person-image");
+const personImages = motif.personImages || [];
+
+if (personImages.length > 0) {
+    const imageContainer = document.createElement("div");
+    imageContainer.style.display = "grid";
+    imageContainer.style.gridTemplateColumns = "repeat(3, minmax(0, 1fr))";
+    imageContainer.style.gap = "10px";
+
+    personImages.forEach((src) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "인물 모티브 이미지";
+        img.style.width = "100%";
+        img.style.borderRadius = "12px";
+        img.onerror = () => img.remove();
+        imageContainer.appendChild(img);
+    });
+
+    personImageContainer.replaceWith(imageContainer);
+}
 
         // 작품 모티브
         setText("work-title", motif.work || "VISUAL INSPIRATION / 시각적 영감", "VISUAL INSPIRATION / 시각적 영감");
