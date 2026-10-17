@@ -104,19 +104,6 @@
             background: #222;
         }
 
-/* 음악 모티브 카드 */
-.music-card {
-    position: relative;
-    min-height: 360px;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
-    border-radius: 24px;
-    background: #222;
-    margin-bottom: 42px;
-}
 
 /* 앨범 커버 배경 */
 #music-cover {
@@ -127,31 +114,46 @@
     object-fit: cover;
 }
 
-/* 음악 제목과 설명 */
+/* 음악 모티브 카드 */
+.music-card {
+    position: relative;
+    min-height: 360px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #222;
+    margin-bottom: 42px;
+}
+
+/* 음악 제목과 가수 */
 .music-info {
     position: relative;
     z-index: 1;
-    margin-top: auto;
-    padding: 100px 24px 24px;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 20px;
+    text-align: center;
     color: white;
-    background: linear-gradient(
-        transparent,
-        rgba(0, 0, 0, 0.88)
-    );
+    background: none;
 }
 
 .music-info h2 {
-    margin: 0 0 12px;
+    margin: 0;
     font-size: 22px;
+    line-height: 1.5;
     overflow-wrap: anywhere;
 }
 
-.music-info p {
-    margin: 0;
-    color: #eee;
-    line-height: 1.7;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
+.music-info .artist {
+    display: block;
+    margin-top: 4px;
+    color: #bbb;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 /* 유튜브 플레이어 */
@@ -249,9 +251,10 @@
 
             <section>
 <article class="music-card" id="music-card">
-  <h2 id="music-title">MUSIC ♫</h2>
-  <p id="music-description">곡 설명</p>
-  <div id="music-player"></div>
+    <div class="music-info">
+        <h2 id="music-title">MUSIC ♫</h2>
+    </div>
+    <div id="music-player"></div>
 </article>
 
                 <div class="tags" id="tags"></div>
@@ -319,13 +322,24 @@ const character = window.characters.find(item => item.id === id);
         // 기타 모티브
         setText("other-description", motif.other, "기타 모티브 정보가 등록되지 않았습니다.");
 
-        // 음악 제목과 가수
-        const musicTitle = [motif.music, motif.musicArtist]
-            .filter(Boolean)
-            .join(" — ");
+// 음악 제목과 가수
+const musicTitle = motif.music || "MUSIC ♫";
+const musicArtist = motif.musicArtist || "";
 
-        setText("music-title", musicTitle || "MUSIC ♫", "MUSIC ♫");
-        setText("music-description", motif.musicDescription, "대표 음악이 등록되지 않았습니다.");
+const titleElement = document.getElementById("music-title");
+
+titleElement.innerHTML = "";
+
+const titleText = document.createElement("span");
+titleText.textContent = musicTitle;
+titleElement.appendChild(titleText);
+
+if (musicArtist) {
+    const artistText = document.createElement("span");
+    artistText.className = "artist";
+    artistText.textContent = musicArtist;
+    titleElement.appendChild(artistText);
+}
 
 
         // 유튜브 플레이어
