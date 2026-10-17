@@ -154,19 +154,14 @@
     overflow-wrap: anywhere;
 }
 
-/* 유튜브 플레이어 */
+/* 유튜브 플레이어를 화면에서 숨김 */
 #music-player {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    background: #111;
-}
-
-#music-player iframe {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* 모바일 화면 */
@@ -347,8 +342,8 @@ const character = window.characters.find(item => item.id === id);
         if (motif.musicVideoId) {
             const iframe = document.createElement("iframe");
 
-            iframe.src =
-                `https://www.youtube-nocookie.com/embed/${encodeURIComponent(motif.musicVideoId)}?autoplay=1&mute=1&playsinline=1`;
+iframe.src =
+    `https://www.youtube-nocookie.com/embed/${encodeURIComponent(motif.musicVideoId)}?autoplay=1&mute=0&playsinline=1`;
 
             iframe.title = `${character.name}의 모티브 음악`;
             iframe.allow = "autoplay; encrypted-media; picture-in-picture";
