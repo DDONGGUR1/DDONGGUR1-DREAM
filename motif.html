@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>CHARACTER MOTIF | DDONGGUR1 DREAM</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: #080808;
+            color: #f5f5f5;
+            font-family: Arial, "Malgun Gothic", sans-serif;
+        }
+
+        .motif-page {
+            width: min(1000px, 90%);
+            margin: 0 auto 60px;
+        }
+
+        .cover {
+            height: 260px;
+            background: linear-gradient(transparent, #080808),
+                        #252525;
+            border-bottom: 1px solid #333;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: -45px;
+            position: relative;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            background: #303039;
+            border: 1px solid #555;
+            object-fit: cover;
+        }
+
+        .name {
+            margin: 0 0 8px;
+            font-size: clamp(28px, 5vw, 46px);
+        }
+
+        .subname {
+            margin: 0;
+            color: #aaa;
+            font-size: 18px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        .back:hover { color: white; }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 55px;
+        }
+
+        .item { margin-bottom: 42px; }
+
+        .item h2 {
+            font-size: 18px;
+            margin: 0 0 8px;
+        }
+
+        .item p {
+            color: #aaa;
+            margin: 0 0 12px;
+            line-height: 1.7;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+
+        .item img {
+            display: block;
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            background: #222;
+        }
+
+        .music-card {
+            min-height: 260px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            border-radius: 24px;
+            background: linear-gradient(transparent, #25252b),
+                        #45454b;
+            margin-bottom: 42px;
+        }
+
+        .music-card h2 { font-size: 22px; }
+
+        .tags {
+            margin-top: 45px;
+            text-align: right;
+            line-height: 2.5;
+            color: #c9c9e8;
+            font-style: italic;
+        }
+
+        .footer {
+            border-top: 1px solid #444;
+            margin-top: 55px;
+            padding-top: 18px;
+            color: #777;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 650px) {
+            .cover { height: 190px; }
+            .header { gap: 16px; }
+            .avatar { width: 95px; height: 95px; }
+            .subname { font-size: 14px; }
+            .content { grid-template-columns: 1fr; gap: 0; margin-top: 35px; }
+            .music-card { min-height: 220px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="motif-page">
+        <div class="cover"></div>
+
+        <header class="header">
+            <img class="avatar" id="avatar" alt="캐릭터 이미지">
+            <div>
+                <h1 class="name" id="name">캐릭터 이름</h1>
+                <p class="subname" id="subname">Character Motif Archive</p>
+            </div>
+        </header>
+
+        <a class="back" id="back" href="index.html">← BACK TO PROFILE</a>
+
+        <div class="content">
+            <section>
+                <article class="item">
+                    <h2>PERSON / 인물</h2>
+                    <p>모티브가 된 인물과 관련 설명</p>
+                    <img src="" alt="인물 모티브 이미지">
+                </article>
+
+                <article class="item">
+                    <h2>WORK / 작품</h2>
+                    <p>참고한 작품과 관련 설명</p>
+                    <img src="" alt="작품 모티브 이미지">
+                </article>
+
+                <article class="item">
+                    <h2>OTHER / 기타</h2>
+                    <p>그 외의 모티브와 설정</p>
+                </article>
+            </section>
+
+            <section>
+                <article class="music-card">
+                    <h2>MUSIC ♫</h2>
+                    <p>캐릭터를 대표하는 음악</p>
+                </article>
+
+                <div class="tags">
+                    #CHARACTER MOTIF<br>
+                    #INSPIRATION<br>
+                    #PERSONAL ARCHIVE
+                </div>
+            </section>
+        </div>
+
+        <footer class="footer">MOTIF FILE · DDONGGUR1 DREAM</footer>
+    </main>
+
+    <script src="characters.js"></script>
+    <script>
+        const params = new URLSearchParams(location.search);
+        const id = params.get("id");
+        const character = characters.find(item => item.id === id);
+
+        if (character) {
+            document.title = `${character.name} MOTIF | DDONGGUR1 DREAM`;
+            document.getElementById("name").textContent = character.name;
+            document.getElementById("subname").textContent = character.name;
+            document.getElementById("back").href =
+                `detail.html?id=${encodeURIComponent(character.id)}`;
+
+            const avatar = document.getElementById("avatar");
+            if (character.photo) {
+                avatar.src = character.photo;
+            } else {
+                avatar.style.display = "none";
+            }
+        } else {
+            document.getElementById("name").textContent = "MOTIF ARCHIVE";
+            document.getElementById("subname").textContent =
+                "캐릭터를 찾을 수 없습니다.";
+        }
+    </script>
+</body>
+</html>
