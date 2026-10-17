@@ -351,7 +351,9 @@ if (personImages.length > 0) {
 }
 
         // 작품 모티브
-        setText("work-title", motif.work || "VISUAL INSPIRATION / 시각적 영감", "VISUAL INSPIRATION / 시각적 영감");
+        document.getElementById("work-title").textContent =
+    motif.work || "VISUAL INSPIRATION / 시각적 영감";
+document.getElementById("work-title").hidden = false;
         setText("work-description", motif.workDescription, "작품 모티브 설명이 등록되지 않았습니다.");
 const workImage = document.getElementById("work-image");
 setImage("work-image", motif.workImage, "작품 모티브 이미지");
