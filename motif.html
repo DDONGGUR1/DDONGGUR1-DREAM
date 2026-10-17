@@ -268,8 +268,11 @@
         <footer class="footer">MOTIF FILE · DDONGGUR1 DREAM</footer>
     </main>
 
-    <script>
-        const params = new URLSearchParams(location.search);
+<script src="./characters.js"></script>
+<script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+    const character = window.characters?.find(item => item.id === id);
         const id = params.get("id");
         const character = characters.find(item => item.id === id);
 
@@ -353,7 +356,7 @@ if (motif.musicVideoId) {
             document.getElementById("back").href = "index.html";
         }
     </script>
-<script src="characters.js"></script>
+
 <script src="theme.js"></script>
 </body>
 </html>
